@@ -779,9 +779,6 @@ VirtualRepeatController.prototype.virtualRepeatUpdate_ = function(items, oldItem
     }
   }, this);
 
-  if (cleanupFirstRender) {
-    this.container.scrollToIndex(firstRenderStartIndex);
-  }
   // Add needed blocks.
   // For performance reasons, temporarily block browser url checks as we digest
   // the restored block scopes ($$checkUrlChange reads window.location to
@@ -823,6 +820,11 @@ VirtualRepeatController.prototype.virtualRepeatUpdate_ = function(items, oldItem
     this.parentNode.insertBefore(
         this.domFragmentFromBlocks_(newEndBlocks),
         this.blocks[maxIndex] && this.blocks[maxIndex].element[0].nextSibling);
+  }
+
+
+  if (cleanupFirstRender) {
+    this.container.scrollToIndex(firstRenderStartIndex);
   }
 
   // Restore $$checkUrlChange.
